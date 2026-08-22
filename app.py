@@ -12,11 +12,6 @@ from utils.rag import (
 from utils.escalation import should_escalate
 from utils.ai import generate_support_response
 
-
-# ============================================================
-# PAGE CONFIG
-# ============================================================
-
 st.set_page_config(
     page_title="FlowDesk AI Support",
     page_icon="⚡",
@@ -24,17 +19,8 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-
-# ============================================================
-# CSS
-# ============================================================
-
 st.markdown("""
 <style>
-
-/* ============================================================
-   GLOBAL
-   ============================================================ */
 
 html,
 body,
@@ -57,11 +43,6 @@ footer {
     padding: 22px 28px 110px 28px !important;
 }
 
-
-/* ============================================================
-   HEADER
-   ============================================================ */
-
 .header {
     display: flex;
     align-items: center;
@@ -71,8 +52,6 @@ footer {
 
     background: linear-gradient(
         135deg,
-        #0d172a,
-        #0b1425
     );
 
     border: 1px solid #263d63;
@@ -102,8 +81,6 @@ footer {
 
     background: linear-gradient(
         135deg,
-        #6366f1,
-        #06b6d4
     );
 
     color: white;
@@ -148,16 +125,9 @@ footer {
         0 0 10px rgba(34, 197, 94, 0.7);
 }
 
-
-/* ============================================================
-   WELCOME PANEL
-   ============================================================ */
-
 .welcome-panel {
     background: linear-gradient(
         135deg,
-        #091426,
-        #07101e
     );
 
     border: 1px solid #263d63;
@@ -195,11 +165,6 @@ footer {
     margin: 0 auto;
 }
 
-
-/* ============================================================
-   CAPABILITY CARDS
-   ============================================================ */
-
 .capability {
     background: #0b1729;
 
@@ -229,11 +194,6 @@ footer {
     margin-top: 4px;
 }
 
-
-/* ============================================================
-   EXAMPLES
-   ============================================================ */
-
 .example-title {
     color: #f1f5f9;
 
@@ -251,11 +211,6 @@ footer {
 
     margin-bottom: 10px;
 }
-
-
-/* ============================================================
-   EXAMPLE BUTTONS
-   ============================================================ */
 
 .stButton > button {
     width: 100% !important;
@@ -291,11 +246,6 @@ footer {
     transform: translateY(-1px);
 }
 
-
-/* ============================================================
-   CHAT PANEL
-   ============================================================ */
-
 .chat-panel {
     background: #091321;
 
@@ -311,11 +261,6 @@ footer {
         0 0 30px rgba(37, 99, 235, 0.04);
 }
 
-
-/* ============================================================
-   USER MESSAGE
-   ============================================================ */
-
 .user-row {
     display: flex;
 
@@ -329,8 +274,6 @@ footer {
 
     background: linear-gradient(
         135deg,
-        #2563eb,
-        #3b82f6
     );
 
     color: #ffffff;
@@ -348,11 +291,6 @@ footer {
     box-shadow:
         0 5px 20px rgba(37, 99, 235, 0.15);
 }
-
-
-/* ============================================================
-   AI MESSAGE
-   ============================================================ */
 
 .ai-row {
     display: flex;
@@ -377,8 +315,6 @@ footer {
 
     background: linear-gradient(
         135deg,
-        #6366f1,
-        #06b6d4
     );
 
     color: white;
@@ -411,11 +347,6 @@ footer {
         0 5px 20px rgba(0, 0, 0, 0.12);
 }
 
-
-/* ============================================================
-   INFO BADGES
-   ============================================================ */
-
 .badges {
     display: flex;
 
@@ -447,11 +378,6 @@ footer {
 
     font-weight: 750;
 }
-
-
-/* ============================================================
-   KNOWLEDGE SOURCE
-   ============================================================ */
 
 .source {
     background: #081525;
@@ -495,11 +421,6 @@ footer {
     margin-top: 3px;
 }
 
-
-/* ============================================================
-   RESOLVED
-   ============================================================ */
-
 .resolved {
     background: #08251a;
 
@@ -517,11 +438,6 @@ footer {
 
     font-weight: 650;
 }
-
-
-/* ============================================================
-   ESCALATION
-   ============================================================ */
 
 .escalation {
     background: #2a1218;
@@ -553,11 +469,6 @@ footer {
     margin-top: 4px;
 }
 
-
-/* ============================================================
-   CHAT INPUT
-   ============================================================ */
-
 [data-testid="stChatInput"] {
     background: #0d192b !important;
 
@@ -587,11 +498,6 @@ footer {
     opacity: 1 !important;
 }
 
-
-/* ============================================================
-   CLEAR BUTTON
-   ============================================================ */
-
 .clear-button > button {
     min-height: 38px !important;
 
@@ -601,11 +507,6 @@ footer {
 
     color: #a7b6cf !important;
 }
-
-
-/* ============================================================
-   MOBILE
-   ============================================================ */
 
 @media (max-width: 700px) {
 
@@ -642,11 +543,6 @@ footer {
 </style>
 """, unsafe_allow_html=True)
 
-
-# ============================================================
-# INITIALIZE BACKEND
-# ============================================================
-
 @st.cache_resource
 def initialize_system():
 
@@ -662,24 +558,13 @@ def initialize_system():
         document_vectors
     )
 
-
 knowledge_base, vectorizer, document_vectors = initialize_system()
-
-
-# ============================================================
-# SESSION STATE
-# ============================================================
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
 if "pending_question" not in st.session_state:
     st.session_state.pending_question = None
-
-
-# ============================================================
-# HEADER
-# ============================================================
 
 st.html("""
 <div class="header">
@@ -715,11 +600,6 @@ st.html("""
 </div>
 """)
 
-
-# ============================================================
-# WELCOME SCREEN
-# ============================================================
-
 if not st.session_state.messages:
 
     st.html("""
@@ -739,11 +619,6 @@ if not st.session_state.messages:
     </div>
     """)
 
-
-    # ========================================================
-    # CAPABILITY CARDS
-    # ========================================================
-
     c1, c2, c3 = st.columns(3)
 
     with c1:
@@ -762,7 +637,6 @@ if not st.session_state.messages:
         </div>
         """)
 
-
     with c2:
 
         st.html("""
@@ -778,7 +652,6 @@ if not st.session_state.messages:
 
         </div>
         """)
-
 
     with c3:
 
@@ -796,11 +669,6 @@ if not st.session_state.messages:
         </div>
         """)
 
-
-    # ========================================================
-    # EXAMPLES
-    # ========================================================
-
     st.html("""
     <div class="example-title">
         Try an example
@@ -811,9 +679,7 @@ if not st.session_state.messages:
     </div>
     """)
 
-
     c1, c2, c3 = st.columns(3)
-
 
     with c1:
 
@@ -828,7 +694,6 @@ if not st.session_state.messages:
 
             st.rerun()
 
-
     with c2:
 
         if st.button(
@@ -841,7 +706,6 @@ if not st.session_state.messages:
             )
 
             st.rerun()
-
 
     with c3:
 
@@ -856,16 +720,7 @@ if not st.session_state.messages:
 
             st.rerun()
 
-
-# ============================================================
-# PROCESS QUESTION
-# ============================================================
-
 def process_question(user_message):
-
-    # ========================================================
-    # CLASSIFICATION
-    # ========================================================
 
     classification = classify_ticket(
         user_message
@@ -875,19 +730,6 @@ def process_question(user_message):
         "category",
         "unknown"
     )
-
-
-    # ========================================================
-    # UNKNOWN REQUEST
-    #
-    # IMPORTANT:
-    # DO NOT SEARCH THE KNOWLEDGE BASE.
-    #
-    # This prevents questions such as:
-    # "What is the weather?"
-    #
-    # from retrieving an unrelated FlowDesk FAQ.
-    # ========================================================
 
     if category == "unknown":
 
@@ -916,11 +758,6 @@ def process_question(user_message):
             decision
         )
 
-
-    # ========================================================
-    # RAG SEARCH
-    # ========================================================
-
     results = search_knowledge_base(
 
         user_message,
@@ -935,11 +772,6 @@ def process_question(user_message):
 
         category=category
     )
-
-
-    # ========================================================
-    # REMOVE WEAK RESULTS
-    # ========================================================
 
     useful_results = []
 
@@ -958,13 +790,7 @@ def process_question(user_message):
                 result
             )
 
-
     results = useful_results
-
-
-    # ========================================================
-    # NO RELEVANT RESULT
-    # ========================================================
 
     if not results:
 
@@ -991,22 +817,12 @@ def process_question(user_message):
             decision
         )
 
-
-    # ========================================================
-    # ESCALATION CHECK
-    # ========================================================
-
     decision = should_escalate(
 
         classification,
 
         results
     )
-
-
-    # ========================================================
-    # GENERATE RESPONSE
-    # ========================================================
 
     answer = generate_support_response(
 
@@ -1015,11 +831,6 @@ def process_question(user_message):
         results
     )
 
-
-    # ========================================================
-    # RETURN
-    # ========================================================
-
     return (
         answer,
         classification,
@@ -1027,24 +838,13 @@ def process_question(user_message):
         decision
     )
 
-
-# ============================================================
-# DISPLAY CHAT
-# ============================================================
-
 if st.session_state.messages:
 
     st.html("""
     <div class="chat-panel">
     """)
 
-
     for message in st.session_state.messages:
-
-
-        # ====================================================
-        # USER MESSAGE
-        # ====================================================
 
         if message["role"] == "user":
 
@@ -1061,11 +861,6 @@ if st.session_state.messages:
 
             </div>
             """)
-
-
-        # ====================================================
-        # AI MESSAGE
-        # ====================================================
 
         else:
 
@@ -1086,7 +881,6 @@ if st.session_state.messages:
                 "decision"
             )
 
-
             st.html(f"""
             <div class="ai-row">
 
@@ -1100,11 +894,6 @@ if st.session_state.messages:
                         {safe_answer}
                     </div>
             """)
-
-
-            # =================================================
-            # CLASSIFICATION
-            # =================================================
 
             if classification:
 
@@ -1122,7 +911,6 @@ if st.session_state.messages:
                     confidence * 100
                 )
 
-
                 st.html(f"""
                 <div class="badges">
 
@@ -1136,7 +924,6 @@ if st.session_state.messages:
 
                     </div>
 
-
                     <div class="badge">
 
                         Confidence:
@@ -1146,7 +933,6 @@ if st.session_state.messages:
                         </strong>
 
                     </div>
-
 
                     <div class="badge">
 
@@ -1160,11 +946,6 @@ if st.session_state.messages:
 
                 </div>
                 """)
-
-
-            # =================================================
-            # KNOWLEDGE SOURCE
-            # =================================================
 
             if results:
 
@@ -1195,13 +976,6 @@ if st.session_state.messages:
                     )
                 )
 
-
-                # Convert score to UI percentage
-                #
-                # TF-IDF score can be > 1 because
-                # the current retrieval implementation
-                # may use boosted values.
-
                 relevance_percent = min(
                     100,
                     max(
@@ -1209,7 +983,6 @@ if st.session_state.messages:
                         int(score * 100)
                     )
                 )
-
 
                 st.html(f"""
                 <div class="source">
@@ -1233,11 +1006,6 @@ if st.session_state.messages:
                 </div>
                 """)
 
-
-            # =================================================
-            # ESCALATION / RESOLUTION
-            # =================================================
-
             if decision:
 
                 if decision.get("escalate"):
@@ -1250,7 +1018,6 @@ if st.session_state.messages:
                             )
                         )
                     )
-
 
                     st.html(f"""
                     <div class="escalation">
@@ -1274,21 +1041,14 @@ if st.session_state.messages:
                     </div>
                     """)
 
-
             st.html("""
                 </div>
             </div>
             """)
 
-
     st.html("""
     </div>
     """)
-
-
-# ============================================================
-# SAMPLE QUESTION
-# ============================================================
 
 if st.session_state.pending_question:
 
@@ -1296,16 +1056,10 @@ if st.session_state.pending_question:
 
     st.session_state.pending_question = None
 
-
-    # Add user message
-
     st.session_state.messages.append({
         "role": "user",
         "content": question
     })
-
-
-    # Process
 
     (
         answer,
@@ -1316,9 +1070,6 @@ if st.session_state.pending_question:
         question
     )
 
-
-    # Add AI message
-
     st.session_state.messages.append({
 
         "role": "assistant",
@@ -1333,22 +1084,13 @@ if st.session_state.pending_question:
 
     })
 
-
     st.rerun()
-
-
-# ============================================================
-# CHAT INPUT
-# ============================================================
 
 user_message = st.chat_input(
     "Describe your issue..."
 )
 
-
 if user_message:
-
-    # Add user message
 
     st.session_state.messages.append({
 
@@ -1357,9 +1099,6 @@ if user_message:
         "content": user_message
 
     })
-
-
-    # Process
 
     (
         answer,
@@ -1370,9 +1109,6 @@ if user_message:
         user_message
     )
 
-
-    # Add AI response
-
     st.session_state.messages.append({
 
         "role": "assistant",
@@ -1387,13 +1123,7 @@ if user_message:
 
     })
 
-
     st.rerun()
-
-
-# ============================================================
-# CLEAR CHAT
-# ============================================================
 
 if st.session_state.messages:
 
@@ -1402,11 +1132,9 @@ if st.session_state.messages:
         unsafe_allow_html=True
     )
 
-
     c1, c2, c3 = st.columns(
         [1, 1, 1]
     )
-
 
     with c2:
 
