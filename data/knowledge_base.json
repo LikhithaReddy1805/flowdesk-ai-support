@@ -1,0 +1,86 @@
+[
+  {
+    "id": "BILL-001",
+    "category": "billing",
+    "question": "What subscription plans does FlowDesk offer?",
+    "answer": "FlowDesk offers Starter at $19 per user per month, Business at $49 per user per month, and Enterprise with custom pricing.",
+    "keywords": ["pricing", "plans", "subscription", "cost"]
+  },
+  {
+    "id": "BILL-002",
+    "category": "billing",
+    "question": "I was charged twice for my subscription. What should I do?",
+    "answer": "If you were charged twice for the same billing period, contact FlowDesk Support with your account email and the two transaction IDs. Support will verify the duplicate charge and process an eligible refund.",
+    "keywords": ["charged twice", "duplicate charge", "double charge", "refund"]
+  },
+  {
+    "id": "BILL-003",
+    "category": "billing",
+    "question": "What is the refund policy?",
+    "answer": "Eligible duplicate charges can be refunded after verification. Refund requests for other situations are reviewed by the billing team on a case-by-case basis.",
+    "keywords": ["refund", "money back", "billing"]
+  },
+  {
+    "id": "BILL-004",
+    "category": "billing",
+    "question": "Which payment methods are supported?",
+    "answer": "FlowDesk currently accepts Visa, Mastercard, American Express, and supported corporate cards.",
+    "keywords": ["payment", "card", "credit card", "payment method"]
+  },
+  {
+    "id": "TECH-001",
+    "category": "technical",
+    "question": "Why am I not receiving notifications?",
+    "answer": "Check that browser notifications are enabled for FlowDesk and that notifications are enabled in your FlowDesk account settings. If the problem continues, contact technical support.",
+    "keywords": ["notifications", "alerts", "notification"]
+  },
+  {
+    "id": "TECH-002",
+    "category": "technical",
+    "question": "Which browsers does FlowDesk support?",
+    "answer": "FlowDesk supports the latest two major versions of Google Chrome, Microsoft Edge, Mozilla Firefox, and Safari.",
+    "keywords": ["browser", "chrome", "edge", "firefox", "safari"]
+  },
+  {
+    "id": "TECH-003",
+    "category": "technical",
+    "question": "Why can't I upload a file?",
+    "answer": "FlowDesk supports PDF, PNG, JPG, DOCX, and XLSX files up to 25 MB per file. Check the file type and size before trying again.",
+    "keywords": ["upload", "file", "attachment", "document"]
+  },
+  {
+    "id": "TECH-004",
+    "category": "technical",
+    "question": "The application is loading slowly. What can I do?",
+    "answer": "Try refreshing the page, clearing the browser cache, and checking your network connection. If the issue affects multiple users, contact technical support.",
+    "keywords": ["slow", "loading", "performance", "lag"]
+  },
+  {
+    "id": "ACCESS-001",
+    "category": "account access",
+    "question": "How do I reset my password?",
+    "answer": "Select 'Forgot password' on the FlowDesk login page and enter your registered email address. A password-reset link will be sent to that email.",
+    "keywords": ["password", "reset", "forgot password", "login"]
+  },
+  {
+    "id": "ACCESS-002",
+    "category": "account access",
+    "question": "I changed my email address. How can I update my FlowDesk account?",
+    "answer": "Contact FlowDesk Support from your existing account email. Support will verify your identity before changing the account email.",
+    "keywords": ["email", "change email", "account email"]
+  },
+  {
+    "id": "ACCESS-003",
+    "category": "account access",
+    "question": "I cannot access my registered email. Can I recover my account?",
+    "answer": "Account recovery requires identity verification by FlowDesk Support. The support team will review the request before restoring access.",
+    "keywords": ["account recovery", "email access", "locked out"]
+  },
+  {
+    "id": "ACCESS-004",
+    "category": "account access",
+    "question": "How do I enable two-factor authentication?",
+    "answer": "Open Settings, select Security, choose Two-Factor Authentication, and follow the setup instructions for your authenticator application.",
+    "keywords": ["2fa", "two factor", "authentication", "security"]
+  }
+]
